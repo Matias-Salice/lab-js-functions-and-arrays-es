@@ -2,10 +2,13 @@
 function maxOfTwoNumbers(num1, num2) {
   if (num1 > num2) {
     console.log('El primer número es mayor');
+    return num1;
   }else if(num1 === num2){
     console.log("Ambos números son iguales");
+    return num1;
   }else {
     console.log('El segundo número es el mayor');
+    return num2;
   }
 }
 
@@ -16,7 +19,11 @@ maxOfTwoNumbers(1, 10);
 const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
 
 function findLongestWord(words) {
-  let longestWord = '';
+if (words.length===0){
+  return null;
+}
+
+  let longestWord = "";
 
   for (let i = 0; i < words.length; i++) {
     if (words[i].length > longestWord.length) {
@@ -40,20 +47,23 @@ function sumNumbers(numbers) {
 }
 
 console.log('La suma de todos los números es: ' + sumNumbers(numbers));
+console.log(typeof words);
 
 // Iteration #3.1 Bonus:
-const mixedArr = [6, 12, 'miami', 1, true, 'barca', '200', 'lisboa', 8, 10];
+const mixedArr = [6, 12, 'miami', 1, true, 'barca', '200', 'lisboa', 8, 10, words ];
 
 function sum(mixedArr) {
   let arrLength = 0;
   for (i = 0; i < mixedArr.length; i++) {
-    if (typeof mixedArr[i] === 'string') {
+    if (typeof mixedArr[i] === "string") {
       arrLength += mixedArr[i].length;
-    } else if (typeof mixedArr[i] === 'boolean') {
+    } else if (typeof mixedArr[i] === "boolean") {
       arrLength += Number(mixedArr[i]);
-    } else if (typeof mixedArr[i] === 'number') {
+    } else if (typeof mixedArr[i] === "number") {
       arrLength += mixedArr[i];
-    }
+     }// else if (typeof mixedArr[i] === "object") {
+    //   throw new Error("Tipo de dato no soportado, no puede contener un objeto o una función");
+    // }      
   }
   return arrLength;
 }
@@ -66,9 +76,13 @@ const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 console.log('La suma de todos los números del array es: ' + sumNumbers(numbersAvg));
 
 function averageNumbers(numbersAvg) {
-  let resultSum = sumNumbers(numbersAvg);
+  if (numbersAvg.length===0){
+    return null;
+  }else{
+    let resultSum = sumNumbers(numbersAvg);
   let avgResult = resultSum / numbersAvg.length;
   return avgResult;
+  }  
 }
 
 console.log('La media de todos los números del array es: ' + averageNumbers(numbersAvg));
@@ -77,20 +91,25 @@ console.log('La media de todos los números del array es: ' + averageNumbers(num
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
 
 function averageWordLength(words) {
-  let wordsArrLenght = 0;
-  let avgWordsLenght = 0;
-  for (i = 0; i < wordsArr.length; i++) {
-    wordsArrLenght += wordsArr[i].length;
+  let totalLength = 0;
+  if (words.length === 0) {
+    return null; 
   }
-  avgWordsLenght = wordsArrLenght / wordsArr.length;
 
-  return avgWordsLenght;
+  for (let i = 0; i < words.length; i++) {
+    totalLength += words[i].length;
+  }
+
+  return totalLength / words.length;
 }
 
 console.log('La longitud media de las palabras del array es: ' + averageWordLength(wordsArr));
 
 // Bonus - Iteration #4.1
 function avg(arr) {
+  if (arr.length===0){
+    return null;
+  }
   let totalLenght = 0;
   let avgArr = 0;
   for (let i = 0; i < mixedArr.length; i++) {
@@ -102,8 +121,7 @@ function avg(arr) {
       totalLenght += Number(mixedArr[i]);
     }
   }
-  avgArr = totalLenght / mixedArr.length;
-  return avgArr;
+  return totalLenght / mixedArr.length;
 }
 
 console.log('El promedio es de: ' + avg(mixedArr));
@@ -124,6 +142,9 @@ const wordsUnique = [
 ];
 
 function uniquifyArray(arrWords) {
+  if (arrWords.length===0){
+    return null;
+  }
   let words = [];
   for (let i = 0; i < arrWords.length; i++) {
     let word = arrWords[i];
@@ -140,6 +161,9 @@ console.log(uniquifyArray(wordsUnique));
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
 
 function doesWordExist(arr, wordSearch) {
+  if (arr.length===0){
+    return null;
+  }
   let coincidence = false;
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] === wordSearch) {
